@@ -1,0 +1,5 @@
+FooBar
+YetAnotherFoolBar
+depth1.FooBar
+depth1.NoMatch
+depth1.depth22.SameFooBar

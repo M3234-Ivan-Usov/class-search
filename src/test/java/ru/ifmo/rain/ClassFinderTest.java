@@ -75,9 +75,17 @@ class ClassFinderTest {
     }
 
     @Test
-    public void walkTest() throws URISyntaxException, IOException {
+    public void recursiveTest() throws URISyntaxException, IOException {
         URL rootDir = Thread.currentThread().getContextClassLoader().getResource("walktest");
-        ClassFinder searcher = new ClassFinder(Path.of(rootDir.toURI()));
+        ClassFinder searcher = new ClassFinder(Path.of(rootDir.toURI()), "-r");
+        Set<String> result = searcher.search("FooBar");
+        assertEquals(Set.of("FooBar", "depth1.FooBar", "depth1.depth22.SameFooBar", "YetAnotherFoolBar"), result);
+    }
+
+    @Test
+    public void fileTest() throws URISyntaxException, IOException {
+        URL rootDir = Thread.currentThread().getContextClassLoader().getResource("input.txt");
+        ClassFinder searcher = new ClassFinder(Path.of(rootDir.toURI()), "-f");
         Set<String> result = searcher.search("FooBar");
         assertEquals(Set.of("FooBar", "depth1.FooBar", "depth1.depth22.SameFooBar", "YetAnotherFoolBar"), result);
     }

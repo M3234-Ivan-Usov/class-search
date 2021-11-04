@@ -21,12 +21,16 @@ public class ClassFinder extends SimpleFileVisitor<Path> {
     private boolean insensitive;
     private Set<String> result;
 
-    public ClassFinder(Path root) throws IOException {
-        this.prefix = root;
-        Files.walkFileTree(root, this);
+    public ClassFinder(Path root, String mode) throws IOException {
+        if (mode.equals("-r")) {
+            this.prefix = root;
+            Files.walkFileTree(root, this);
+        } else if (mode.equals("-f")) {
+            Files.readAllLines(root).forEach(this::addName);
+        } else throw new IllegalArgumentException("Expected mode '-r' or '-f'");
     }
 
-    public ClassFinder(Set<String> names) { names.forEach(this::addName); }
+    ClassFinder(Set<String> names) { names.forEach(this::addName); }
 
     void addName(String fullName) {
         String clazzName = getName(fullName);
@@ -94,7 +98,7 @@ public class ClassFinder extends SimpleFileVisitor<Path> {
     }
 
     @Override
-    public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+    public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
         if (file.toString().endsWith(".java")) {
             String fullName = prefix.relativize(file).toString().replace(File.separatorChar, '.');
             addName(fullName.substring(0, fullName.length() - 5));  // remove .java
@@ -110,12 +114,17 @@ public class ClassFinder extends SimpleFileVisitor<Path> {
         return result;
     }
 
-    public static void main(String[] args) throws IOException {
-        if (args == null || args.length != 2) {
-            System.err.println("Expected <root> <pattern>");
+    public static void main(String[] args) {
+        if (args == null || args.length != 3) {
+            System.err.println("Expected <mode> <root> <pattern>");
             return;
         }
-        Path root = Path.of(args[0]);
-        Set<String> result = new ClassFinder(root).search(args[1]);
+        try {
+            Set<String> result = new ClassFinder(Path.of(args[1]), args[0]).search(args[2]);
+            result.forEach(System.out::println);
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+            e.printStackTrace();
+        }
     }
 }

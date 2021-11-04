@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ru.ifmo.rain.ClassFinderTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-11-04T13:01:39" hostname="LAPTOP-EO957LS3" time="0.035">
+<testsuite name="ru.ifmo.rain.ClassFinderTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2021-11-04T13:20:15" hostname="LAPTOP-EO957LS3" time="0.127">
   <properties/>
-  <testcase name="walkTest()" classname="ru.ifmo.rain.ClassFinderTest" time="0.035"/>
+  <testcase name="simpleTest()" classname="ru.ifmo.rain.ClassFinderTest" time="0.029"/>
+  <testcase name="recursiveTest()" classname="ru.ifmo.rain.ClassFinderTest" time="0.004"/>
+  <testcase name="fileTest()" classname="ru.ifmo.rain.ClassFinderTest" time="0.08"/>
+  <testcase name="singleWildcardTest1()" classname="ru.ifmo.rain.ClassFinderTest" time="0.001"/>
+  <testcase name="singleWildcardTest2()" classname="ru.ifmo.rain.ClassFinderTest" time="0.002"/>
+  <testcase name="withPackageTest()" classname="ru.ifmo.rain.ClassFinderTest" time="0.001"/>
+  <testcase name="lowerTest1()" classname="ru.ifmo.rain.ClassFinderTest" time="0.001"/>
+  <testcase name="lowerTest2()" classname="ru.ifmo.rain.ClassFinderTest" time="0.001"/>
+  <testcase name="doubleWildCardTest()" classname="ru.ifmo.rain.ClassFinderTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
