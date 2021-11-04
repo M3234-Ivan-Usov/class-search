@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.ifmo.rain.ClassFinderTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-11-04T13:01:39" hostname="LAPTOP-EO957LS3" time="0.035">
+  <properties/>
+  <testcase name="walkTest()" classname="ru.ifmo.rain.ClassFinderTest" time="0.035"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
